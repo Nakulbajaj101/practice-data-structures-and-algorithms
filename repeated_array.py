@@ -5,13 +5,13 @@ arr = [1,2,1,2]
 def repeated_array(arr: List[int]):
 
     if isinstance(arr, List) and arr and len(arr) > 1:
-        repeated = {}
+        repeated = []
         for i in range(0, len(arr)):
             for j in range(i+1, len(arr)):
                 if arr[i] == arr[j]:
-                    repeated[arr[i]] = j
-        if repeated.keys():
-            return arr[min(repeated.values())]
+                    repeated.append(j)
+        if repeated:
+            return arr[min(repeated)]
     return None
 
 #(O(n))
@@ -41,5 +41,7 @@ if __name__ == "__main__":
     print(repeated_array([1]))
     print(repeated_array([1, 'n', 2, 'n']))
     print(repeated_array([1, 'n', 2,2, 'n']))
+    print(repeated_array([1, 'n', 5,5, 2,2, 1, 'n']))
+    print(repeated_array([1, 'n', 'n', 5,5, 2,2, 1, 'n']))
     print(repeated_array2([1, 'n', 2,2, 'n']))
 
