@@ -87,11 +87,15 @@ class BinarySearchTree:
                     else:
                         next_node = current_node["left"]
                         next_node_parent = current_node
+                        right = current_node["right"]
                         while next_node["right"]:
                             next_node_parent = next_node
                             next_node = next_node["right"]
                         current_node["value"] = next_node["value"]
-                        next_node_parent["right"] = None
+                        if next_node["left"] and next_node_parent["right"] == current_node["right"]:
+                            current_node["left"] = next_node["left"]
+                        else:
+                            next_node_parent["right"] = next_node["left"]
                     
                     return current_node
                 
@@ -125,10 +129,12 @@ if __name__ == "__main__":
     bst.insert(12)
     bst.insert(16)
     # bst.insert(1)
-    print(json.dumps(bst.root, indent=4))
+    # print(json.dumps(bst.root, indent=4))
     # print(json.dumps(bst.lookup(10), indent=4))
     # print(json.dumps(bst.lookup(5), indent=4))
     bst.remove(10)
+    bst.remove(15)
+    bst.remove(9)
     print(json.dumps(bst.root, indent=4))
 
    
